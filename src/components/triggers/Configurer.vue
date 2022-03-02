@@ -1,7 +1,7 @@
 <template>
     <a-form :label-col="{span: 4}" :wrapper-col="{span: 20}" @submit="save">
         <a-form-item label="标识">
-            <a-input v-model:value="modelRef.name"/>
+            <a-input v-model:value="modelRef.name" :disabled="!!model?.name"/>
         </a-form-item>
         <a-form-item label="名称">
             <a-input v-model:value="modelRef.metadata.title"/>
