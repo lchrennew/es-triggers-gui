@@ -1,5 +1,5 @@
 <template>
-    <data-loader :hash="true" :load-data="getListeners" #="{loaded, data}">
+    <path-data-loader #="{loaded, data}">
         <a-table :loading="!loaded" :data-source="data">
             <a-table-column key="name" #="{record}" title="名称">
                 {{ record.metadata.title }}
@@ -13,12 +13,11 @@
                 <a-tag v-for="trigger in record.spec.triggers" :key="trigger">{{ trigger }}</a-tag>
             </a-table-column>
         </a-table>
-    </data-loader>
+    </path-data-loader>
 </template>
 
 <script setup>
-import DataLoader from "../common/DataLoader.vue";
-import { getListeners } from "../../services/listeners.js";
+import PathDataLoader from "../common/PathDataLoader.vue";
 
 const host = import.meta.env.VITE_API_HOST
 </script>

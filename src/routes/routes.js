@@ -30,12 +30,12 @@ export default [
     },
     {
         name: '输入拦截',
-        path: '/source-interceptor/',
+        path: '/source-interceptors/',
         component: SourceInterceptor,
     },
     {
         name: '输出拦截',
-        path: '/target-interceptor/',
+        path: '/target-interceptors/',
         component: TargetInterceptor,
     },
     {
