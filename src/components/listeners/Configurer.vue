@@ -1,22 +1,13 @@
 <template>
-    <a-form :label-col="{span: 4}" :wrapper-col="{span: 20}" @submit="save">
+    <a-form :label-col="{span: 4}" :wrapper-col="{span: 20}">
         <a-form-item label="标识">
             <a-input v-model:value="modelRef.name"/>
         </a-form-item>
         <a-form-item label="名称">
             <a-input v-model:value="modelRef.metadata.title"/>
         </a-form-item>
-        <a-form-item label="输入拦截">
-            <model-picker model="source-interceptors" v-model:value="modelRef.spec.sourceInterceptor"/>
-        </a-form-item>
-        <a-form-item label="输出拦截">
-            <model-picker model="target-interceptors" v-model:value="modelRef.spec.targetInterceptor"/>
-        </a-form-item>
-        <a-form-item label="数据绑定">
-            <model-picker model="bindings" v-model:value="modelRef.spec.binding"/>
-        </a-form-item>
-        <a-form-item label="输出模版">
-            <model-picker model="templates" v-model:value="modelRef.spec.template"/>
+        <a-form-item label="转化">
+            <model-picker v-model:value="modelRef.spec.triggers" model="triggers" multiple/>
         </a-form-item>
     </a-form>
     <drawer-footer>
@@ -29,9 +20,9 @@
 import { reactive } from "vue";
 import { clone } from "../../utils/objects.js";
 import { useForm } from "ant-design-vue/es/form/index.js";
-import ModelPicker from "../common/ModelPicker.vue";
 import DrawerFooter from "../common/drawer/DrawerFooter.vue";
 import PathDataSaver from "../common/PathDataSaver.vue";
+import ModelPicker from "../common/ModelPicker.vue";
 
 const props = defineProps([ 'model', 'reload' ])
 const defaultModel = { name: null, metadata: { title: null }, spec: {} }

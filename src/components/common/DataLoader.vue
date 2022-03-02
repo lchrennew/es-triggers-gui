@@ -42,7 +42,7 @@ onBeforeUnmount(() => syncLoaded(false))
         type="error"
         show-icon
     />
-    <slot v-else :data="data" :loaded="dataLoaded" :reload-data="syncLoaded"/>
+    <slot v-else :data="data" :loaded="dataLoaded" :reload="syncLoaded"/>
 </template>
 
 <style scoped>

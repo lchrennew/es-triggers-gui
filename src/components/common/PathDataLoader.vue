@@ -1,5 +1,8 @@
 <template>
-    <data-loader #="props" :hash="$route.fullPath" :load-data="getPathData" :load-data-args="$route.fullPath">
+    <data-loader #="props"
+                 :hash="$route.fullPath"
+                 :load-data="getPathData"
+                 :load-data-args="$route.fullPath">
         <slot v-bind="props"/>
     </data-loader>
 </template>

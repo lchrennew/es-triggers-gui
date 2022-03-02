@@ -6,6 +6,11 @@
 import { inject } from "vue";
 
 const openDrawer = inject('openDrawer')
-const props = defineProps([ 'props', 'component', 'componentProps', 'footer' ])
-const open = () => openDrawer(props.props, props.component, props.componentProps, props.footer)
+const props = defineProps({
+    props: Object,
+    component: { required: true },
+    componentProps: { required: false },
+    footer: { type: Boolean, default: false }
+})
+const open = () => openDrawer(props)
 </script>

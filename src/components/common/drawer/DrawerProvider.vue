@@ -24,10 +24,10 @@ const drawerFooterId = `drawer-footer-${generateObjectID()}`
 const drawerFooter = shallowRef(false)
 const drawerLoaded = ref(false)
 
-const openDrawer = (props, component, compProps, footer = false) => {
+const openDrawer = ({ props, component, componentProps, footer = false }) => {
     drawerProps.value = props
     drawerComponent.value = component
-    drawerComponentProps.value = compProps
+    drawerComponentProps.value = componentProps
     drawerVisible.value = true
     drawerFooter.value = footer
 }
