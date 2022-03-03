@@ -1,7 +1,6 @@
 <script setup>
 
-import DefaultLayout from "./layout/DefaultLayout.vue";
-</script>
+import DefaultLayout from "./layout/DefaultLayout.vue";</script>
 
 <template>
     <default-layout/>
@@ -12,18 +11,50 @@ import DefaultLayout from "./layout/DefaultLayout.vue";
     min-height: 100%;
     display: flex;
 
-    .actions button {
-        border: none 0;
-        background: transparent;
-        cursor: pointer;
-        color: #ccc;
+    .column-flex{
+        display: flex;
+        flex-direction: column;
+    }
 
-        &:hover {
-            color: #7c7c7c;
-        }
+    .spanning-height{
+        .column-flex();
+        height: fit-content;
+        flex: 1;
+    }
 
-        &:focus {
-            outline: none;
+    .ant-table-wrapper {
+        .column-flex();
+        min-height: 100%;
+
+        & > .ant-spin-nested-loading {
+            .spanning-height();
+
+            & > .ant-spin-container {
+                .spanning-height();
+
+                & > .ant-table {
+                    flex: 1;
+                    background: #7c7c7c;
+
+                    & .ant-table-content {
+                        background: #fff;
+                        .actions button {
+                            border: none 0;
+                            background: transparent;
+                            cursor: pointer;
+                            color: #ccc;
+
+                            &:hover {
+                                color: #7c7c7c;
+                            }
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
