@@ -1,11 +1,11 @@
 import Home from "../pages/Home.vue";
-import Listeners from '../pages/listeners/Index.vue'
-import TargetSystems from '../pages/target-systems/Index.vue'
-import Triggers from '../pages/triggers/Index.vue'
-import SourceInterceptor from '../pages/source-interceptors/Index.vue'
-import TargetInterceptor from '../pages/target-interceptors/Index.vue'
-import Bindings from '../pages/bindings/Index.vue'
-import Templates from '../pages/templates/Index.vue'
+import Listeners from '../pages/Listeners.vue'
+import TargetSystems from '../pages/TargetSystems.vue'
+import Triggers from '../pages/Triggers.vue'
+import SourceInterceptor from '../pages/SourceInterceptors.vue'
+import TargetInterceptor from '../pages/TargetInterceptors.vue'
+import Bindings from '../pages/Bindings.vue'
+import Templates from '../pages/Templates.vue'
 
 export default [
     {

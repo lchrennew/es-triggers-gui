@@ -12,6 +12,7 @@ const props = defineProps([ 'validate', 'data', 'reload' ])
 const route = useRoute()
 const path = route.path.endsWith('/') ? route.path.substring(0, route.path.length - 1) : route.path
 const closeDrawer = inject('closeDrawer')
+const emit = defineEmits(['saved'])
 const save = async () => {
     try {
         await props.validate()
@@ -21,7 +22,7 @@ const save = async () => {
     await savePathData(path, props.data.name, props.data)
     message.success('保存成功')
     closeDrawer()
-    props.reload?.()
+    emit('saved')
 }
 </script>
 

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import BindingTable from "../../components/bindings/BindingTable.vue";</script>
+import BindingTable from "../components/bindings/BindingTable.vue";</script>
 
 <style scoped>
 

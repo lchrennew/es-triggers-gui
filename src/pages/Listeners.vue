@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import ListenerTable from "../../components/listeners/ListenerTable.vue";</script>
+import ListenerTable from "../components/listeners/ListenerTable.vue";</script>
 
 <style scoped>
 

@@ -17,7 +17,7 @@
         </a-table-column>
         <a-table-column key="actions" #="{record}" width="100px">
             <a-space class="actions">
-                <configurer-opener :model="record" :reload="reload" :configurer="Configurer"/>
+                <configurer-opener :configurer="TriggerConfigurer" :model="record" :reload="reload"/>
                 <button>
                     <delete-outlined/>
                 </button>
@@ -28,6 +28,6 @@
 
 <script setup>
 import { DeleteOutlined } from "@ant-design/icons-vue";
-import Configurer from './Configurer.vue'
+import TriggerConfigurer from './TriggerConfigurer.vue'
 import ConfigurerOpener from "../common/ConfigurerOpener.vue";
 import PathDataTable from "../common/PathDataTable.vue";</script>

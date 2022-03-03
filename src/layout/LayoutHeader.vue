@@ -5,9 +5,11 @@
         </a-menu>
 
         <div class="right">
-            <a-button>
-                <plus-outlined/>
-            </a-button>
+            <drawer-opener #="{open}" :component="Wizard" :props="{title: '创建转化向导', width: 800}" footer>
+                <a-button @click="open">
+                    <plus-outlined/>
+                </a-button>
+            </drawer-opener>
         </div>
     </a-layout-header>
 </template>
@@ -16,6 +18,8 @@
 import { useRoute, useRouter } from "vue-router";
 import { ref, watchEffect } from "vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
+import DrawerOpener from "../components/common/drawer/DrawerOpener.vue";
+import Wizard from "../components/Wizard.vue";
 
 const currentKeys = ref('')
 const route = useRoute()

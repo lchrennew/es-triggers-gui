@@ -1,13 +1,14 @@
 <template>
-
+    <div class="flex">
+        <img src="src/assets/bg.png" style="width: 80%">
+    </div>
 </template>
 
-<script>
-export default {
-    name: "Home"
+
+<style scoped lang="less">
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-</script>
-
-<style scoped>
-
 </style>

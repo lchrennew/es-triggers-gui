@@ -1,9 +1,12 @@
 <script setup>
 
-import DefaultLayout from "./layout/DefaultLayout.vue";</script>
+import DefaultLayout from "./layout/DefaultLayout.vue";
+import DrawerProvider from "./components/common/drawer/DrawerProvider.vue";</script>
 
 <template>
-    <default-layout/>
+    <drawer-provider>
+        <default-layout/>
+    </drawer-provider>
 </template>
 
 <style lang="less">
@@ -11,12 +14,12 @@ import DefaultLayout from "./layout/DefaultLayout.vue";</script>
     min-height: 100%;
     display: flex;
 
-    .column-flex{
+    .column-flex {
         display: flex;
         flex-direction: column;
     }
 
-    .spanning-height{
+    .spanning-height {
         .column-flex();
         height: fit-content;
         flex: 1;
@@ -37,6 +40,7 @@ import DefaultLayout from "./layout/DefaultLayout.vue";</script>
 
                     & .ant-table-content {
                         background: #fff;
+
                         .actions button {
                             border: none 0;
                             background: transparent;

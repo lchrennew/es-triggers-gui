@@ -1,7 +1,7 @@
 <template>
     <drawer-opener #="{open}"
                    :component="configurer"
-                   :component-props="{model, reload}"
+                   :component-props="{model, onSaved:()=>emit('saved')}"
                    footer
                    :props="{title: `编辑${model.name}`}">
         <button @click="open">
@@ -16,9 +16,10 @@ import DrawerOpener from "./drawer/DrawerOpener.vue";
 
 defineProps({
     model: { type: Object, required: true },
-    reload: { type: Function, required: true },
     configurer: { required: true }
 })
+
+const emit = defineEmits([ 'saved' ])
 </script>
 
 <style scoped>

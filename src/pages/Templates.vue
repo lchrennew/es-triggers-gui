@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import TemplateTable from "../../components/templates/TemplateTable.vue";</script>
+import TemplateTable from "../components/templates/TemplateTable.vue";</script>
 
 <style scoped>
 

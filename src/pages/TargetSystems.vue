@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import TargetSystemTable from "../../components/target-systems/TargetSystemTable.vue";
+import TargetSystemTable from "../components/target-systems/TargetSystemTable.vue";
 
 export default {
     name: "Index",

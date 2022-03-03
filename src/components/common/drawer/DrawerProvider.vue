@@ -9,7 +9,7 @@
             <div :id="drawerFooterId"/>
         </template>
     </a-drawer>
-    <div class="drawer-container" ref="container">
+    <div class="drawer-container" :class="{docked}" ref="container">
         <slot/>
     </div>
 </template>
@@ -20,14 +20,14 @@ import { generateObjectID } from "es-object-id";
 
 const props = defineProps({
     drawer: Object,
-    inContainer: Boolean,
+    docked: Boolean,
 })
 const container = ref()
 const defaultProps = {
     width: 600, destroyOnClose: true,
-    ...(props.inContainer ? {
+    ...(props.docked ? {
         getContainer: () => container.value,
-        style: {position: 'absolute'},
+        style: { position: 'absolute' },
     } : {})
 
 }
@@ -61,8 +61,6 @@ provide('drawerFooter', computed(() => drawerFooter.value))
 .drawer-container {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
-    height: fit-content;
     flex: 1;
     position: relative;
 }

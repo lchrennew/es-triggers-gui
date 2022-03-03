@@ -1,31 +1,47 @@
 <template>
-    <data-loader #="{loaded, data}" :load-data="getPathData" :load-data-args="hash" :hash="hash">
-        <a-select
-            :default-active-first-option="true"
+    <data-loader #="{loaded, data, reload}" :load-data="getPathData" :load-data-args="hash" :hash="hash">
+        <a-space v-if="addOn">
+            <select-picker
+                :data="data"
+                :disabled="!loaded"
+                :get-option="getOption"
+                :multiple="multiple"
+                :placeholder="placeholder"
+                :value="value"
+                :width="width"
+                @change="onChange"
+            />
+            <slot name="add-on" :reload="reload"/>
+        </a-space>
+        <select-picker
+            v-else
+            :data="data"
             :disabled="!loaded"
-            :filter-option="filterOption"
-            :not-found-content="null"
-            :options="data?.map(getOption)"
-            :value="value"
-            allow-clear
+            :get-option="getOption"
+            :multiple="multiple"
             :placeholder="placeholder"
-            show-search
+            :value="value"
+            :width="width"
             @change="onChange"
-            :mode="multiple ? 'multiple' : 'combobox'"
         />
     </data-loader>
 
 </template>
 
 <script setup>
-import Pinyin from "pinyin-match";
 import DataLoader from "./DataLoader.vue";
 import { getPathData } from "../../services/models.js";
+import SelectPicker from "./SelectPicker.vue";
 
-
-const filterOption = (input, option) => option.label.toLowerCase().includes(input.toLowerCase()) || Pinyin.match(option.label, input)
-
-defineProps([ 'value', 'hash', 'placeholder', 'getOption', 'multiple' ])
+defineProps({
+    value: { required: false },
+    hash: String,
+    placeholder: String,
+    getOption: { required: true, type: Function },
+    multiple: Boolean,
+    width: String,
+    addOn: Boolean
+})
 const emit = defineEmits([ 'update:value', 'change' ])
 const onChange = value => {
     emit('update:value', value)

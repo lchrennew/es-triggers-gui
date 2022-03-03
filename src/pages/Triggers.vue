@@ -4,7 +4,7 @@
 
 <script setup>
 
-import TriggerTable from "../../components/triggers/TriggerTable.vue";</script>
+import TriggerTable from "../components/triggers/TriggerTable.vue";</script>
 
 <style scoped>
 

@@ -10,7 +10,7 @@
         </a-table-column>
         <a-table-column key="actions" #="{record}" width="100px">
             <a-space class="actions">
-                <configurer-opener :model="record" :reload="reload" :configurer="Configurer"/>
+                <configurer-opener :configurer="ListenerConfigurer" :model="record" @saved="reload"/>
             </a-space>
         </a-table-column>
     </path-data-table>
@@ -18,7 +18,7 @@
 
 <script setup>
 import ConfigurerOpener from "../common/ConfigurerOpener.vue";
-import Configurer from './Configurer.vue'
+import ListenerConfigurer from './ListenerConfigurer.vue'
 import PathDataTable from "../common/PathDataTable.vue";
 
 const host = import.meta.env.VITE_API_HOST
