@@ -1,7 +1,7 @@
 <template>
     <a-drawer
         v-model:visible="drawerVisible"
-        v-bind="{ width: 600, destroyOnClose: true, ...drawerProps }"
+        v-bind="{ ...defaultProps, ...drawer, ...drawerProps }"
         @afterVisibleChange="visible=>drawerLoaded=visible"
     >
         <component :is="drawerComponent" v-bind="drawerComponentProps||{}"/>
@@ -9,12 +9,28 @@
             <div :id="drawerFooterId"/>
         </template>
     </a-drawer>
-    <slot/>
+    <div class="drawer-container" ref="container">
+        <slot/>
+    </div>
 </template>
 
 <script setup>
 import { computed, provide, ref, shallowRef } from "vue";
 import { generateObjectID } from "es-object-id";
+
+const props = defineProps({
+    drawer: Object,
+    inContainer: Boolean,
+})
+const container = ref()
+const defaultProps = {
+    width: 600, destroyOnClose: true,
+    ...(props.inContainer ? {
+        getContainer: () => container.value,
+        style: {position: 'absolute'},
+    } : {})
+
+}
 
 const drawerProps = ref(null)
 const drawerVisible = ref(false)
@@ -42,6 +58,15 @@ provide('drawerFooter', computed(() => drawerFooter.value))
 </script>
 
 <style scoped lang="less">
+.drawer-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: fit-content;
+    flex: 1;
+    position: relative;
+}
+
 [id^='drawer-footer-'] {
     text-align: right;
 }

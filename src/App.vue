@@ -23,8 +23,7 @@ import DefaultLayout from "./layout/DefaultLayout.vue";</script>
     }
 
     .ant-table-wrapper {
-        .column-flex();
-        min-height: 100%;
+        .spanning-height();
 
         & > .ant-spin-nested-loading {
             .spanning-height();

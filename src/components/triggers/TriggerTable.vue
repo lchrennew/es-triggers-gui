@@ -1,5 +1,5 @@
 <template>
-    <path-data-table>
+    <path-data-table #="{reload}">
         <a-table-column key="source-interceptor" #="{record}" title="输入拦截">
             {{ record.spec.sourceInterceptor }}
         </a-table-column>

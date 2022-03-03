@@ -1,5 +1,5 @@
 <template>
-    <path-data-table>
+    <path-data-table #="{reload}">
         <a-table-column key="name" #="{record}" title="监听地址">
             <a-typography-text copyable>
                 {{ host }}/hook/{{ record.name }}

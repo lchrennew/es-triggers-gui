@@ -1,5 +1,5 @@
 <template>
-    <path-data-table>
+    <path-data-table #="{reload}">
         <a-table-column key="url" #="{record}" title="目标地址">
             {{ record.spec.url }}
         </a-table-column>

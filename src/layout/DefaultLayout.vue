@@ -2,16 +2,13 @@
     <a-layout>
         <layout-header/>
         <a-layout-content style="padding: 60px;">
-            <drawer-provider>
-                <router-view/>
-            </drawer-provider>
+            <router-view/>
         </a-layout-content>
     </a-layout>
 </template>
 
 <script setup>
-import LayoutHeader from "./LayoutHeader.vue";
-import DrawerProvider from "../components/common/drawer/DrawerProvider.vue";</script>
+import LayoutHeader from "./LayoutHeader.vue";</script>
 
 <style scoped>
 
