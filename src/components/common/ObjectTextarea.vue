@@ -1,5 +1,5 @@
 <template>
-    <a-textarea v-model:value="text" @blur="onChange" ref="textarea"/>
+    <a-textarea ref="textarea" v-model:value="text" @blur="onChange"/>
 </template>
 
 <script setup>

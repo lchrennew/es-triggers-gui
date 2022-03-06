@@ -1,6 +1,6 @@
 <template>
     <a-layout-header class="layout-header">
-        <a-menu theme="dark" mode="horizontal" :selected-keys="currentKeys" @select="redirect">
+        <a-menu :selected-keys="currentKeys" mode="horizontal" theme="dark" @select="redirect">
             <a-menu-item v-for="route in routes" :key="route.name">{{ route.name }}</a-menu-item>
         </a-menu>
 
@@ -31,7 +31,7 @@ watchEffect(() => currentKeys.value = [ route.name?.split('/').shift() ])
 
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .layout-header {
     display: flex;
     flex-direction: row;

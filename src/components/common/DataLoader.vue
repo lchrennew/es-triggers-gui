@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, provide, ref } from 'vue'
 
 const props = defineProps({
     hash: { required: true },
@@ -22,27 +22,29 @@ const dataLoaded = computed(() => {
 const loadData = async () => {
     try {
         data.value = await props.loadData(props.loadDataArgs)
-        syncLoaded(props.hash)
+        setLoaded(props.hash)
     } catch (e) {
         error.value = e.message ?? e
     }
 }
 
-const syncLoaded = $loaded => props.reload ? props.reload($loaded) : (loaded.value = $loaded)
+const setLoaded = ($loaded = false) => props.reload ? props.reload($loaded) : (loaded.value = $loaded)
 
-syncLoaded(false)
-onBeforeUnmount(() => syncLoaded(false))
+setLoaded(false)
+onBeforeUnmount(() => setLoaded(false))
+
+provide('reload', setLoaded)
 </script>
 
 <template>
     <a-alert
         v-if="error"
-        message="数据加载出错了"
         :description="error"
-        type="error"
+        message="数据加载出错了"
         show-icon
+        type="error"
     />
-    <slot v-else :data="data" :loaded="dataLoaded" :reload="syncLoaded"/>
+    <slot v-else :data="data" :loaded="dataLoaded" :reload="setLoaded"/>
 </template>
 
 <style scoped>

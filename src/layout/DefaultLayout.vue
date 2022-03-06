@@ -8,7 +8,13 @@
 </template>
 
 <script setup>
-import LayoutHeader from "./LayoutHeader.vue";</script>
+import LayoutHeader from "./LayoutHeader.vue";
+import { useRoute } from "vue-router";
+import { computed, provide } from "vue";
+
+const route = useRoute()
+provide('path', computed(() => route.path.endsWith('/') ? route.path.substring(0, route.path.length - 1) : route.path))
+</script>
 
 <style scoped>
 

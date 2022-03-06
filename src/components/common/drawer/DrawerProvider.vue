@@ -5,12 +5,12 @@
         @afterVisibleChange="visible=>drawerLoaded=visible"
     >
         <component :is="drawerComponent" v-bind="drawerComponentProps||{}"/>
-        <template #footer v-if="drawerFooter">
+        <template v-if="drawerFooter" #footer>
             <div :id="drawerFooterId"/>
         </template>
     </a-drawer>
-    <div class="drawer-container" :class="{docked}" ref="container">
-        <slot/>
+    <div ref="container" :class="{docked}" class="drawer-container">
+        <slot :close="closeDrawer"/>
     </div>
 </template>
 
@@ -57,7 +57,7 @@ provide('drawerLoaded', computed(() => drawerLoaded.value))
 provide('drawerFooter', computed(() => drawerFooter.value))
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .drawer-container {
     display: flex;
     flex-direction: column;

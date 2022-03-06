@@ -1,5 +1,5 @@
 <template>
-    <path-data-table #="{reload}">
+    <path-data-table>
         <a-table-column key="source-interceptor" #="{record}" title="输入拦截">
             {{ record.spec.sourceInterceptor }}
         </a-table-column>
@@ -15,19 +15,14 @@
         <a-table-column key="target-system" #="{record}" title="输出目标">
             {{ record.spec.targetSystem }}
         </a-table-column>
-        <a-table-column key="actions" #="{record}" width="100px">
-            <a-space class="actions">
-                <configurer-opener :configurer="TriggerConfigurer" :model="record" :reload="reload"/>
-                <button>
-                    <delete-outlined/>
-                </button>
-            </a-space>
-        </a-table-column>
     </path-data-table>
 </template>
 
 <script setup>
-import { DeleteOutlined } from "@ant-design/icons-vue";
 import TriggerConfigurer from './TriggerConfigurer.vue'
-import ConfigurerOpener from "../common/ConfigurerOpener.vue";
-import PathDataTable from "../common/PathDataTable.vue";</script>
+import PathDataTable from "../common/PathDataTable.vue";
+import { provide } from "vue";
+
+provide('configurer', TriggerConfigurer)
+provide('configurerProps', null)
+</script>

@@ -5,7 +5,7 @@
 </template>
 
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .flex {
     display: flex;
     flex-direction: column;
