@@ -40,14 +40,25 @@ import DrawerProvider from "./common/drawer/DrawerProvider.vue";
 import ListenerConfigurer from './listeners/ListenerConfigurer.vue'
 import TriggerConfigurer from './triggers/TriggerConfigurer.vue'
 import TargetSystemConfigurer from './target-systems/TargetSystemConfigurer.vue'
-import { reactive } from "vue";
+import { provide, reactive } from "vue";
 import ModelPickerFormItem from "./common/picker/ModelPickerFormItem.vue";
+import { useForm } from "ant-design-vue/es/form/index.js";
 
 const modelRef = reactive({
     listener: null,
     trigger: null,
     targetSystem: null,
 })
+const rulesRef = reactive({
+    listener: [
+        { required: true }
+    ],
+    'target-system': [
+        { required: true }
+    ]
+})
+const { validate, validateInfos } = useForm(modelRef, rulesRef, { deep: true })
+provide('validateInfos', validateInfos)
 </script>
 
 <style lang="less" scoped>

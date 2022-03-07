@@ -15,7 +15,7 @@
 import Pinyin from "pinyin-match";
 import { computed } from "vue";
 
-const filterOption = (input, option) => option.label.toLowerCase().includes(input.toLowerCase()) || Pinyin.match(option.label, input)
+const filterOption = (input, option) => !input || option.label.toLowerCase().includes(input.toLowerCase()) || Pinyin.match(option.label, input)
 
 const props = defineProps({
     value: { required: true },
@@ -25,7 +25,8 @@ const props = defineProps({
     width: String,
 })
 
-const options = computed(() => props.models?.map(model => ({ label: model.metadata.title, value: model.name })))
+const options = computed(() => props.models?.map(
+    model => ({ label: model.metadata.title || model.name, value: model.name })))
 
 const emit = defineEmits([ 'update:value', 'change' ])
 const onChange = value => {

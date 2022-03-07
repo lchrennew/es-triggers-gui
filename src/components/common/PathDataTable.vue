@@ -3,7 +3,7 @@
         <drawer-provider>
             <a-table :data-source="data" :loading="!loaded" :pagination="{hideOnSinglePage: true}">
                 <a-table-column key="name" #="{record}" title="名称" width="400px">
-                    {{ record.metadata.title }}
+                    {{ record.metadata.title || record.name }}
                 </a-table-column>
                 <slot :reload="reload"/>
                 <a-table-column key="actions" #="{record:model}" width="100px">

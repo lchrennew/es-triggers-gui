@@ -1,26 +1,28 @@
 <template>
-    <a-form-item v-bind="{label, name}">
+    <a-form-item :label="label" v-bind="validateInfo">
         <path-data-loader
             #="{data, reload, loaded}"
         >
-            <a-space>
-                <model-picker
-                    :disabled="!loaded || !data?.length"
-                    :models="data"
-                    v-bind="{value, multiple}"
-                    width="406px"
-                    @update:value="onValueChange"
-                />
-                <configurer-opener
-                    #="{open}"
-                    @saved="onModelCreated.bind(null, {reload, data})($event)"
-                    v-bind="{label, path: name}"
-                >
-                    <a-button @click="open" :type="data&&!data.length?'primary':'default'" :disabled="!data">
-                        <plus-outlined />
-                    </a-button>
-                </configurer-opener>
-            </a-space>
+            <drawer-provider>
+                <a-space>
+                    <model-picker
+                        :disabled="!loaded || !data?.length"
+                        :models="data"
+                        v-bind="{value, multiple}"
+                        width="406px"
+                        @update:value="onValueChange"
+                    />
+                    <configurer-opener
+                        #="{open}"
+                        @saved="model=>onModelCreated.bind(null,{reload, data})(model)"
+                        v-bind="{label, path: name}"
+                    >
+                        <a-button @click="open" :type="data&&!data.length?'primary':'default'" :disabled="!data">
+                            <plus-outlined/>
+                        </a-button>
+                    </configurer-opener>
+                </a-space>
+            </drawer-provider>
         </path-data-loader>
     </a-form-item>
 </template>
@@ -30,8 +32,10 @@ import PathDataLoader from "../PathDataLoader.vue";
 import ModelPicker from "./ModelPicker.vue";
 import ConfigurerOpener from "../ConfigurerOpener.vue";
 import { PlusOutlined } from '@ant-design/icons-vue'
-import { provide } from "vue";
+import { inject, provide } from "vue";
+import DrawerProvider from "../drawer/DrawerProvider.vue";
 
+const validateInfos = inject('validateInfos')
 const props = defineProps({
     label: String,
     name: String,
@@ -48,7 +52,8 @@ const onValueChange = value => {
     emit('change', value)
 }
 
-const onModelCreated = (context, { name }) => {
+const onModelCreated = (context, model) => {
+    const { name } = model
     const value = props.multiple ? [ ...props.value, name ] : name
     onValueChange(value)
     context.reload()
@@ -57,6 +62,8 @@ const onModelCreated = (context, { name }) => {
 provide('path', props.name)
 provide('configurer', props.configurer)
 provide('configurerProps', props.configurerProps)
+
+const validateInfo = validateInfos[props.name]
 </script>
 
 <style scoped>
